@@ -27,7 +27,21 @@ const iphoneBrowserContextTest = async () => {
   await browser.close();
 };
 
+const pageNavigation = async () => {
+  const browser = await webkit.launch();
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  await page.goto('https://www.google.com');
+  await page.fill('input.gLFyf.gsfi', 'youtube');
+  await page.click('input.gNO89b');
+
+  console.log(page.url());
+  await page.screenshot({ path: `out/page-navigation-search-webkit.png` });
+  await browser.close();
+};
+
 (async () => {
   //   await screenshotTest();
   //   await iphoneBrowserContextTest();
+  //   await pageNavigation();
 })();
